@@ -113,6 +113,11 @@ public class UserController {
 	@RequestMapping("updateUser")
 	@ResponseBody
 	public void updateUser(User user){
+
 		userService.updateUser(user);
+	}
+	//test
+	public static void main(String[] args) {
+		System.out.println("hhhhhhhhhhhh");
 	}
 }
