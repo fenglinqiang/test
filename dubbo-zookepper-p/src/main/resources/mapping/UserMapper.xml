@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.UserDao" >
+ <resultMap id="BaseResultMap" type="com.jk.model.User" >
+    <id column="taid" property="taid" jdbcType="INTEGER" />
+    <result column="taname" property="taname" jdbcType="VARCHAR" />
+    <result column="taage" property="taage" jdbcType="INTEGER" />
+    <result column="tabir" property="tabir" jdbcType="DATE" />
+  </resultMap>
+  <sql id="find">
+		<where>
+			1=1
+		</where>
+ </sql>
+ 
+ 
+ <!-- 查询 -->
+	 <select id="userDaofind" resultMap="BaseResultMap">
+	 select * from aa  <include refid="find"></include> limit #{start} , #{pageSize}
+	 
+	 </select>
+<!-- 	分页 -->
+	<select id="userDaocount"  parameterType="com.jk.model.User" resultType="long">
+	  	SELECT COUNT(0) FROM aa <include refid="find"></include>
+	</select>
+<!--  修改查询 -->
+	<select id="queryUpdate" resultMap="BaseResultMap">
+	select * from aa a where a.taid=#{taid}
+	</select>
+ <!-- 修改 -->
+  <update id="updateUser" parameterType="com.jk.model.User" >
+    update aa
+    <set >
+      <if test="taname != null" >
+        taname = #{taname,jdbcType=VARCHAR},
+      </if>
+      <if test="taage != null" >
+        taage = #{taage,jdbcType=INTEGER},
+      </if>
+      <if test="tabir != null" >
+        tabir = #{tabir,jdbcType=DATE},
+      </if>
+    </set>
+    where taid = #{taid,jdbcType=INTEGER}
+  </update>
+
+</mapper>
