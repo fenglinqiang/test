@@ -119,6 +119,7 @@ public class UserController {
 	//test
 	public static void main(String[] args) {
 		System.out.println("xxxxxxxxxxxxxxxxx");
+		System.out.println("12345678");
 		System.out.println("hhhhhhhhhhhh");
 	}
 }
